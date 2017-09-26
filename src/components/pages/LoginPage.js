@@ -11,7 +11,7 @@ class LoginPage extends React.Component {
             <div>
                 <h1>Login Page</h1>
 
-                <LoginForm submit={this.submit}/>
+                <LoginForm submit={this.submit} />
             </div>
         );
     }
