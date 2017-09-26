@@ -7,16 +7,17 @@ import InlineError from "../messages/InlineError";
 class LoginForm extends React.Component {
     state = {
         data: {
-            email: '',
-            password: ''
+            email: "",
+            password: ""
         },
         loading: false,
-        errors: {},
+        errors: {}
     };
 
-    onChange = e => this.setState({
-        data: { ...this.state.data, [e.target.name]: e.target.value }
-    });
+    onChange = e =>
+        this.setState({
+            data: { ...this.state.data, [e.target.name]: e.target.value }
+        });
 
     onSubmit = () => {
         const errors = this.validate(this.state.data);
@@ -26,12 +27,12 @@ class LoginForm extends React.Component {
         }
     };
 
-    validate = (data) => {
+    validate = data => {
         const errors = {};
         if (!Validator.isEmail(data.email)) errors.email = "Invalid email";
         if (!data.password) errors.password = "Can't be blank";
         return errors;
-    }
+    };
 
     render() {
         const { data, errors } = this.state;
@@ -39,24 +40,26 @@ class LoginForm extends React.Component {
             <Form onSubmit={this.onSubmit}>
                 <Form.Field>
                     <label htmlForm="email">Email</label>
-                    <input 
+                    <input
                         type="email"
                         id="email"
                         name="email"
                         placeholder="example@example.com"
-                        value={data.email} 
-                        onChange={this.onChange}/>
+                        value={data.email}
+                        onChange={this.onChange}
+                    />
                     {errors.email && <InlineError text={errors.email} />}
                 </Form.Field>
                 <Form.Field>
                     <label htmlForm="password">Password</label>
-                    <input 
+                    <input
                         type="password"
                         id="password"
                         name="password"
                         placeholder="secure"
-                        value={data.password} 
-                        onChange={this.onChange}/>
+                        value={data.password}
+                        onChange={this.onChange}
+                    />
                     {errors.password && <InlineError text={errors.password} />}
                 </Form.Field>
                 <Button primary>Login</Button>
